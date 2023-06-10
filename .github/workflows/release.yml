@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-2016, ubuntu-latest]
+        os: [ubuntu-latest]
 
     steps:
       - name: Context
@@ -30,6 +30,8 @@ jobs:
       - name: Publish
         run: |
           npm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Cleanup artifacts
         run: |
           npx rimraf "release/**/!(*.exe|*.deb|*.AppImage|*.dmg)"
