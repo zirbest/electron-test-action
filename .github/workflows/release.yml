@@ -33,7 +33,7 @@ jobs:
         run: sudo apt-get install libarchive-tools rpm
 
       - name: rebuild lectron
-        run: npx electtron-rebuild
+        run: npx electron-rebuild
 
       - name: Release Electron app
         uses: coparse-inc/action-electron-builder@v1.0.0
