@@ -11,6 +11,7 @@
     "dev": "node scripts/watch.mjs",
     "build": "npm run typecheck && node scripts/build.mjs && electron-builder --config .electron-builder.config.js",
     "typecheck": "tsc --noEmit --project packages/renderer/tsconfig.json",
+
     "db:gen": "nlx prisma generate",
     "db:push": "nlx prisma db push --skip-generate",
     "db:studio": "nlx prisma studio --port 5556",
