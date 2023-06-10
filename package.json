@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "node scripts/watch.mjs",
     "build": "npm run typecheck && node scripts/build.mjs && electron-builder --config .electron-builder.config.js",
+    "release": "npm run typecheck && node scripts/build.mjs && electron-builder --config .electron-builder.config.js  --publish always",
     "typecheck": "tsc --noEmit --project packages/renderer/tsconfig.json",
     "db:gen": "nlx prisma generate",
     "db:push": "nlx prisma db push --skip-generate",
