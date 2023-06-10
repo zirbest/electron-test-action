@@ -2,7 +2,7 @@
   "name": "vite-solid-electron",
   "productName": "Electron",
   "private": true,
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Vite SolidJS Electron boilerplate.",
   "author": "ch99q <64793a1a@gmail.com>",
   "license": "MIT",
