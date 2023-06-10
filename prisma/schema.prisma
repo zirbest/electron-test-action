@@ -1,0 +1,19 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:../dev.db"
+}
+
+generator kysely {
+    provider = "prisma-kysely"
+    // Optionally provide a destination directory for the generated file
+    // and a filename of your choice
+    output = "../packages/main/kysely-db"
+    fileName = "types.ts"
+    // Optionally generate runtime enums to a separate file
+     enumFileName = "enums.ts"
+}
+
+model users {
+  id    Int     @id @default(autoincrement())
+  name  String?
+}
