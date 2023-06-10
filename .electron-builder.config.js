@@ -1,38 +1,48 @@
-/**
- * @type {import('electron-builder').Configuration}
- * @see https://www.electron.build/configuration/configuration
- */
+const {
+  main,
+  name,
+  version,
+  resources,
+  description,
+  displayName,
+  author: _author,
+} = require('./package.json')
+
+const { getDevFolder } = require('./bin/utils')
+
+const author = _author?.name ?? _author
+const currentYear = new Date().getFullYear()
+const authorInKebabCase = author.replace(/\s+/g, '-')
+const appId = `com.${authorInKebabCase}.${name}`.toLowerCase()
+
+/** @type {import('electron-builder').Configuration} */
 module.exports = {
-  appId: "YourAppID",
-  productName: "YourAppName",
-  copyright: "Copyright © 2022 ${author}",
-  asar: true,
+  appId,
+  productName: displayName,
+  copyright: `Copyright © ${currentYear} — ${author}`,
+
   directories: {
-    output: "release/${version}",
-    buildResources: "build",
+    app: getDevFolder(main),
+    output: `dist/v${version}`,
   },
-  files: ["dist"],
-  win: {
-    target: [
-      {
-        target: "nsis",
-        arch: ["x64"],
-      },
-    ],
-    artifactName: "${productName}-${version}-Setup.${ext}",
-  },
-  nsis: {
-    oneClick: false,
-    perMachine: false,
-    allowToChangeInstallationDirectory: true,
-    deleteAppDataOnUninstall: false,
-  },
+
   mac: {
-    target: ["dmg"],
-    artifactName: "${productName}-${version}-Installer.${ext}",
+    icon: `${resources}/build/icons/icon.icns`,
+    category: 'public.app-category.utilities',
   },
+
+  dmg: {
+    icon: false,
+  },
+
   linux: {
-    target: ["AppImage"],
-    artifactName: "${productName}-${version}-Installer.${ext}",
+    category: 'Utilities',
+    synopsis: description,
+    target: ['AppImage', 'deb', 'pacman', 'freebsd', 'rpm'],
+  },
+
+  win: {
+    icon: `${resources}/build/icons/icon.ico`,
+    target: ['nsis', 'portable', 'zip'],
   },
 }
