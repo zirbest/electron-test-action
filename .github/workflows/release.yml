@@ -50,7 +50,7 @@ jobs:
       - name: list and move files
         run: |
           ls -lah
-          mkdir dist
+          mkdir rls
           cp release/**/*.AppImage ./rls
           ls -lah
       - name: zip files
