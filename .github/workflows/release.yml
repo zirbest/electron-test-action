@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [windows-latest]
 
     steps:
       - name: Context
@@ -34,7 +34,7 @@ jobs:
           npm install
       - name: Build
         run: |
-          npm run build --win
+          npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -49,10 +49,10 @@ jobs:
 
       - name: list and move files
         run: |
-          ls -lah
+          ls
           mkdir rls
           cp release/**/*.exe ./rls
-          ls -lah ./rls
+          ls ./rls
           # find
 
       # - name: zip files
