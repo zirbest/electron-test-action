@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [ubuntu-latest]
 
     steps:
       - name: Context
@@ -34,7 +34,7 @@ jobs:
           npm install
       - name: Build
         run: |
-          npm run build
+          npm run build --win
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
