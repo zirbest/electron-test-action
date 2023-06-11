@@ -47,17 +47,23 @@ jobs:
       #     name: ${{ matrix.os }}
       #     path: "release/**/YourAppName"
 
+      - name: list and move files
+        run: |
+          ls -lah
+          mkdir dist
+          cp release/**/*.AppImage ./dist
+          ls -lah
       - name: zip files
         uses: thedoctor0/zip-release@master
         with:
           type: 'zip'
           filename: test.zip
-          directory: release
+          directory: dist
 
       - name: Release
         uses: softprops/action-gh-release@v1
         # if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: "release/test.zip"
+          files: "dist/test.zip"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
