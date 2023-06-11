@@ -53,6 +53,7 @@ jobs:
           mkdir rls
           cp release/**/*.AppImage ./rls
           ls -lah ./rls
+          find
 
       # - name: zip files
       #   uses: thedoctor0/zip-release@master
